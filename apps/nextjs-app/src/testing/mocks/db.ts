@@ -1,5 +1,6 @@
-import { factory, primaryKey } from '@mswjs/data';
-import { nanoid } from 'nanoid';
+// path : apps/nextjs-app/src/testing/mocks/db.ts
+import { factory, primaryKey } from "@mswjs/data";
+import { nanoid } from "nanoid";
 
 const models = {
   user: {
@@ -41,45 +42,43 @@ export const db = factory(models);
 
 export type Model = keyof typeof models;
 
-const dbFilePath = 'mocked-db.json';
+const dbFilePath = "mocked-db.json";
 
 export const loadDb = async () => {
   // If we are running in a Node.js environment
-  if (typeof window === 'undefined') {
-    const { readFile, writeFile } = await import('fs/promises');
+  if (typeof window === "undefined") {
+    const { readFile, writeFile } = await import("fs/promises");
     try {
-      const data = await readFile(dbFilePath, 'utf8');
+      const data = await readFile(dbFilePath, "utf8");
       return JSON.parse(data);
     } catch (error: any) {
-      if (error?.code === 'ENOENT') {
+      if (error?.code === "ENOENT") {
         const emptyDB = {};
         await writeFile(dbFilePath, JSON.stringify(emptyDB, null, 2));
         return emptyDB;
       } else {
-        console.error('Error loading mocked DB:', error);
+        console.error("Error loading mocked DB:", error);
         return null;
       }
     }
   }
   // If we are running in a browser environment
-  return Object.assign(
-    JSON.parse(window.localStorage.getItem('msw-db') || '{}'),
-  );
+  return Object.assign(JSON.parse(window.localStorage.getItem("msw-db") || "{}"));
 };
 
 export const storeDb = async (data: string) => {
   // If we are running in a Node.js environment
-  if (typeof window === 'undefined') {
-    const { writeFile } = await import('fs/promises');
+  if (typeof window === "undefined") {
+    const { writeFile } = await import("fs/promises");
     await writeFile(dbFilePath, data);
   } else {
     // If we are running in a browser environment
-    window.localStorage.setItem('msw-db', data);
+    window.localStorage.setItem("msw-db", data);
   }
 };
 
 export const persistDb = async (model: Model) => {
-  if (process.env.NODE_ENV === 'test') return;
+  if (process.env.NODE_ENV === "test") return;
   const data = await loadDb();
   data[model] = db[model].getAll();
   await storeDb(JSON.stringify(data));

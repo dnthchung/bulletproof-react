@@ -1,14 +1,10 @@
-import { HttpResponse, http } from 'msw';
+//path : apps/nextjs-app/src/testing/mocks/handlers/users.ts
+import { HttpResponse, http } from "msw";
 
-import { env } from '@/config/env';
+import { env } from "@/config/env";
 
-import { db, persistDb } from '../db';
-import {
-  requireAuth,
-  requireAdmin,
-  sanitizeUser,
-  networkDelay,
-} from '../utils';
+import { db, persistDb } from "../db";
+import { requireAuth, requireAdmin, sanitizeUser, networkDelay } from "../utils";
 
 type ProfileBody = {
   email: string;
@@ -38,10 +34,7 @@ export const usersHandlers = [
 
       return HttpResponse.json({ data: result });
     } catch (error: any) {
-      return HttpResponse.json(
-        { message: error?.message || 'Server Error' },
-        { status: 500 },
-      );
+      return HttpResponse.json({ message: error?.message || "Server Error" }, { status: 500 });
     }
   }),
 
@@ -62,13 +55,10 @@ export const usersHandlers = [
         },
         data,
       });
-      await persistDb('user');
+      await persistDb("user");
       return HttpResponse.json(result);
     } catch (error: any) {
-      return HttpResponse.json(
-        { message: error?.message || 'Server Error' },
-        { status: 500 },
-      );
+      return HttpResponse.json({ message: error?.message || "Server Error" }, { status: 500 });
     }
   }),
 
@@ -92,13 +82,10 @@ export const usersHandlers = [
           },
         },
       });
-      await persistDb('user');
+      await persistDb("user");
       return HttpResponse.json(result);
     } catch (error: any) {
-      return HttpResponse.json(
-        { message: error?.message || 'Server Error' },
-        { status: 500 },
-      );
+      return HttpResponse.json({ message: error?.message || "Server Error" }, { status: 500 });
     }
   }),
 ];
