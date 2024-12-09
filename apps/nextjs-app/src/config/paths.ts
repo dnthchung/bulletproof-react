@@ -1,37 +1,35 @@
 export const paths = {
   home: {
-    getHref: () => '/',
+    getHref: () => "/",
   },
 
   auth: {
     register: {
-      getHref: (redirectTo?: string | null | undefined) =>
-        `/auth/register${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+      getHref: (redirectTo?: string | null | undefined) => `/auth/register${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ""}`,
     },
     login: {
-      getHref: (redirectTo?: string | null | undefined) =>
-        `/auth/login${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+      getHref: (redirectTo?: string | null | undefined) => `/auth/login${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ""}`,
     },
   },
 
   app: {
     root: {
-      getHref: () => '/app',
+      getHref: () => "/app",
     },
     dashboard: {
-      getHref: () => '/app',
+      getHref: () => "/app",
     },
     discussions: {
-      getHref: () => '/app/discussions',
+      getHref: () => "/app/discussions",
     },
     discussion: {
       getHref: (id: string) => `/app/discussions/${id}`,
     },
     users: {
-      getHref: () => '/app/users',
+      getHref: () => "/app/users",
     },
     profile: {
-      getHref: () => '/app/profile',
+      getHref: () => "/app/profile",
     },
   },
   public: {

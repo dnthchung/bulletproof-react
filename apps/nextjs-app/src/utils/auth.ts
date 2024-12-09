@@ -1,9 +1,10 @@
-import { cookies } from 'next/headers';
+//path : apps/nextjs-app/src/utils/auth.ts
+import { cookies } from "next/headers";
 
-export const AUTH_TOKEN_COOKIE_NAME = 'bulletproof_react_app_token';
+export const AUTH_TOKEN_COOKIE_NAME = "bulletproof_react_app_token";
 
 export const getAuthTokenCookie = () => {
-  if (typeof window !== 'undefined') return '';
+  if (typeof window !== "undefined") return "";
   const cookieStore = cookies();
   return cookieStore.get(AUTH_TOKEN_COOKIE_NAME)?.value;
 };
