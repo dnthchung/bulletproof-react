@@ -1,28 +1,26 @@
-import { Comment, User } from '@/types/api';
+//path : apps/nextjs-app/src/lib/authorization.ts
+import { Comment, User } from "@/types/api";
 
 export const canCreateDiscussion = (user: User | null | undefined) => {
-  return user?.role === 'ADMIN';
+  return user?.role === "ADMIN";
 };
 export const canDeleteDiscussion = (user: User | null | undefined) => {
-  return user?.role === 'ADMIN';
+  return user?.role === "ADMIN";
 };
 export const canUpdateDiscussion = (user: User | null | undefined) => {
-  return user?.role === 'ADMIN';
+  return user?.role === "ADMIN";
 };
 
 export const canViewUsers = (user: User | null | undefined) => {
-  return user?.role === 'ADMIN';
+  return user?.role === "ADMIN";
 };
 
-export const canDeleteComment = (
-  user: User | null | undefined,
-  comment: Comment,
-) => {
-  if (user?.role === 'ADMIN') {
+export const canDeleteComment = (user: User | null | undefined, comment: Comment) => {
+  if (user?.role === "ADMIN") {
     return true;
   }
 
-  if (user?.role === 'USER' && comment.author?.id === user.id) {
+  if (user?.role === "USER" && comment.author?.id === user.id) {
     return true;
   }
 

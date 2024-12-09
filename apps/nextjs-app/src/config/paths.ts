@@ -1,3 +1,4 @@
+//path : apps/nextjs-app/src/config/paths.ts
 export const paths = {
   home: {
     getHref: () => "/",
