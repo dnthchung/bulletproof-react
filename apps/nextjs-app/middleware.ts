@@ -23,3 +23,5 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/app/:path*"], // Áp dụng cho tất cả route trong /app
 };
+
+// => deo dùng được vì cho nextjs server thôi

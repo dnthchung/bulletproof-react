@@ -1,3 +1,4 @@
+//path : apps/nextjs-app/src/lib/api-client.ts
 import { useNotifications } from "@/components/ui/notifications";
 import { env } from "@/config/env";
 
